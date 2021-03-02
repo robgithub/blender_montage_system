@@ -1,3 +1,6 @@
+# Blender montage script
+# applies scene settings and then each defined camera setting and each matcap selection
+# renders each configuration creating 32 image files
 import bpy
 
 def set_scene():
@@ -35,8 +38,8 @@ def main():
     destination_path = '/tmp/skulls/'
     set_scene()
     for cam in cam_setups:
+        set_camera(cam)
         for mat in mat_caps:
-            set_camera(cam)
             set_matcap(mat)
             do_render(destination_path, "{0}__{1}".format(cam['camera_name'], mat))
 
